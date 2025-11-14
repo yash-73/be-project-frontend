@@ -25,14 +25,14 @@ function StatusPage() {
   return (
     <div className="api-page">
       <div className="page-header">
-        <h1>📊 Status Check</h1>
+        <h1>📊 Health Check</h1>
         <p>Monitor the health and availability of the service</p>
       </div>
 
       <div className="api-card">
         <div className="endpoint-info">
           <span className="method-badge get">GET</span>
-          <code className="endpoint">/status</code>
+          <code className="endpoint">/health</code>
         </div>
 
         <button
@@ -40,7 +40,7 @@ function StatusPage() {
           onClick={handleCheckStatus}
           disabled={loading}
         >
-          {loading ? 'Checking...' : 'Check Status'}
+          {loading ? 'Checking...' : 'Check health'}
         </button>
 
         {loading && (
