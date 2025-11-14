@@ -1,5 +1,4 @@
-// ...new file...
-import React from 'react';
+import React, { useState } from 'react';
 import './../pages/ApiPage.css';
 
 export default function CarDetails({ data }) {
@@ -8,12 +7,37 @@ export default function CarDetails({ data }) {
   // Example response shape observed:
   // { car_name: 'bmw_x5', specs: ['3.0L Turbocharged Engine', '335 HP', ...], ... }
   const { car_name, specs, ...rest } = data;
+  const [imgError, setImgError] = useState(false);
+
+  // public/ files are served from the root in Vite, so use `/${car_name}.avif`
+  const imageSrc = car_name ? `/${encodeURIComponent(car_name)}.avif` : null;
 
   return (
     <div style={{ maxWidth: 800 }}>
       {car_name && (
         <div style={{ marginBottom: 8 }}>
           <strong>Car:</strong> <span style={{ color: '#e94560' }}>{car_name}</span>
+        </div>
+      )}
+
+      {/* Image (AVIF) */}
+      {imageSrc && !imgError && (
+        <div style={{ marginBottom: 12 }}>
+          <picture>
+            <source srcSet={imageSrc} type="image/avif" />
+            <img
+              src={imageSrc}
+              alt={car_name}
+              style={{ maxWidth: '100%', height: 'auto', borderRadius: 8 }}
+              onError={() => setImgError(true)}
+            />
+          </picture>
+        </div>
+      )}
+
+      {imgError && (
+        <div style={{ marginBottom: 12, color: 'rgba(255,255,255,0.8)' }}>
+          Image not available
         </div>
       )}
 
@@ -47,4 +71,3 @@ export default function CarDetails({ data }) {
     </div>
   );
 }
-// ...new file...

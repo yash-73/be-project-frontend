@@ -82,6 +82,7 @@ function DataPage() {
               id="carName"
               value={carName}
               onChange={(e) => setCarName(e.target.value)}
+              className='form-group'
               disabled={loading}
             >
               <option value="">Select a car</option>
