@@ -12,7 +12,7 @@ function DataPage() {
     'audi_a4',
     'audi_q7',
     'mercedes_c_class',
-    'mercesdes_gle',
+    'mercedes_gle',
     'toyota_fortuner',
     'toyota_camry',
     'ford_mustang',
